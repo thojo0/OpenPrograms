@@ -23,7 +23,7 @@ for _, fluid in pairs(fluids) do
 end
 
 if gefunden then
-  print("Index plz:")
+  print("Bitte Index-Nummer eingeben:")
   idx = io.read()
   tank.moveFluidToBottom(tonumber(idx))
 else
