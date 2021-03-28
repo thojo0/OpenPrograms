@@ -24,6 +24,7 @@ if string.lower(args[0]) == "set" then  -- SET befehl
   else
     print("Fluid nicht gefunden!")
   end
+  goto exit
 end
 
 -- getFluids to array
@@ -45,3 +46,5 @@ function search(fluids, search)
   end
   return gefunden
 end
+
+::exit::
