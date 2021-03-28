@@ -14,8 +14,8 @@ search = io.read()
 gefunden = false
 for i=0, anzahl do
   if i < anzahl - 1 then
-    if string.find(string.lower(fluid.label .. fluid.name), string.lower(search)) then
-      print(i + 1 .. "\t" .. fluid.label)
+    if string.find(string.lower(fluids[i].label .. fluids[i].name), string.lower(search)) then
+      print(i + 1 .. "\t" .. fluids[i].label)
       gefunden = true
     end
   end
