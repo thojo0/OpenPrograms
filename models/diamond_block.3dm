@@ -1,4 +1,0 @@
-{
-  label = "Block of Diamond",
-  shapes = {{0,0,0,16,16,16, texture="diamond_block"}}
-}
