@@ -7,6 +7,7 @@ for _, fluid in pairs(fluids) do
   anzahl = anzahl + 1
 end
 
+print("Was willste?")
 search = io.read()
 
 for _, fluid in pairs(fluids) do
@@ -18,3 +19,8 @@ for _, fluid in pairs(fluids) do
     end
   end
 end
+
+print("Index plz:")
+idx = io.read()
+
+tank.moveFluidToBottom(idx)
