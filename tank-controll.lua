@@ -7,6 +7,7 @@ function getFluids()
   for _, fluid in pairs(tank.getFluids()) do
     fluids[#fluids + 1] = fluid
   end
+  table.remove(fluids)
   return fluids
 end
 -- search for fluid with string
