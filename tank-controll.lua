@@ -1,9 +1,10 @@
 tank = require("component").tinker_tank
-fluids = tank.getFluids()
-anzahl = 0
-idx = 0
 
-for _, fluid in pairs(fluids) do
+-- getFluids to array
+fluids = {}
+anzahl = 0
+for _, fluid in pairs(tank.getFluids()) do
+  fluids[anzahl] = fluid
   anzahl = anzahl + 1
 end
 
@@ -11,17 +12,16 @@ print("Welchen Fluid willst du?")
 search = io.read()
 
 gefunden = false
-for _, fluid in pairs(fluids) do
-  anzahl = anzahl - 1
-  idx = idx + 1
-  if anzahl > 0 then
+for i=0, anzahl do
+  if i < anzahl - 1 then
     if string.find(string.lower(fluid.label .. fluid.name), string.lower(search)) then
-      print(idx .. "\t" .. fluid.label)
+      print(i + 1 .. "\t" .. fluid.label)
       gefunden = true
     end
   end
 end
 
+idx = 0
 if gefunden then
   print("Bitte Index-Nummer eingeben:")
   idx = io.read()
