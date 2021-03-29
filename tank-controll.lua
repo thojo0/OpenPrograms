@@ -1,5 +1,7 @@
 components = require("component")
+term = require("term")
 tank = components.tinker_tank
+gpu = components.gpu
 args = {...}
 
 -- getFluids to array
@@ -24,21 +26,26 @@ end
 
 -- Subcommands
 if string.lower(args[1]) == "get" then  -- GET befehl
-  gpu = components.gpu
   resX,resY = gpu.getResolution()
+  grafiksize = 8
   fluids = getFluids()
+  term.clear()
   for i=1, #fluids do
     print(i .. "\t" .. fluids[i].label)
   end
-  color = getBackground()
-  setBackground(0xFFFFFF)
-  fill(resX - 5, 1, 5, resY, " ")
-  setBackground(color)
+  color = gpu.getBackground()
+  gpu.setBackground(0xCCCCCC)
+  gpu.fill(resX - grafiksize - 1, 1, grafiksize, resY, " ")
+  gpu.setBackground(0xFFFFFF)
+  gpu.fill(resX - grafiksize, 10, grafiksize - 2, resY - 10, " ")
+  gpu.setBackground(color)
+  gpu.fill(resX - grafiksize, 2, grafiksize - 2, 10, " ")
+  term.read()
 end
 if string.lower(args[1]) == "set" then  -- SET befehl
   fluids = getFluids()
   print("Welchen Fluid willst du?")
-  search = io.read()
+  search = term.read()
   
   gefunden = fluidSearch(fluids, search)
   if #gefunden > 0 then
@@ -46,7 +53,7 @@ if string.lower(args[1]) == "set" then  -- SET befehl
       print(gefunden[i] .. "\t" .. fluids[gefunden[i]].label)
     end
     print("Bitte Index-Nummer eingeben:")
-    idx = tonumber(io.read())
+    idx = tonumber(term.read())
     tank.moveFluidToBottom(idx)
   else
     print("Fluid nicht gefunden!")
