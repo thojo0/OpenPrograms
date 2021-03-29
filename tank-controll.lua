@@ -39,7 +39,7 @@ if string.lower(args[1]) == "get" then  -- GET befehl
   for i=1, #fluids do
     print(i .. "\t" .. fluids[i].label)
   end
-  stand = (resY - 2) * tank.getCapacity() / tank.getFillLevel()
+  stand = (resY - 2) * tank.getFillLevel() / tank.getCapacity()
   color = gpu.getBackground()
   gpu.setBackground(0xCCCCCC)
   gpu.fill(resX - grafiksize + 1, 1, grafiksize, resY, " ")
@@ -47,12 +47,12 @@ if string.lower(args[1]) == "get" then  -- GET befehl
   gpu.fill(resX - grafiksize + 2, stand, grafiksize - 2, round(resY - stand), " ")
   gpu.setBackground(color)
   gpu.fill(resX - grafiksize + 2, 2, grafiksize - 2, stand - 2, " ")
-  term.read()
+  io.read()
 end
 if string.lower(args[1]) == "set" then  -- SET befehl
   fluids = getFluids()
   print("Welchen Fluid willst du?")
-  search = term.read()
+  search = io.read()
   
   gefunden = fluidSearch(fluids, search)
   if #gefunden > 0 then
@@ -60,7 +60,7 @@ if string.lower(args[1]) == "set" then  -- SET befehl
       print(gefunden[i] .. "\t" .. fluids[gefunden[i]].label)
     end
     print("Bitte Index-Nummer eingeben:")
-    idx = tonumber(term.read())
+    idx = tonumber(io.read())
     tank.moveFluidToBottom(idx)
   else
     print("Fluid nicht gefunden!")
