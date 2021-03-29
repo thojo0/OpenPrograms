@@ -1,4 +1,5 @@
-tank = require("component").tinker_tank
+components = require("component")
+tank = components.tinker_tank
 args = {...}
 
 -- getFluids to array
@@ -23,10 +24,16 @@ end
 
 -- Subcommands
 if string.lower(args[1]) == "get" then  -- GET befehl
+  gpu = components.gpu
+  resX,resY = gpu.getResolution()
   fluids = getFluids()
   for i=1, #fluids do
     print(i .. "\t" .. fluids[i].label)
   end
+  color = getBackground()
+  setBackground(0xFFFFFF)
+  fill(resX - 5, 1, 5, resY, " ")
+  setBackground(color)
 end
 if string.lower(args[1]) == "set" then  -- SET befehl
   fluids = getFluids()
