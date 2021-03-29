@@ -4,12 +4,6 @@ tank = components.tinker_tank
 gpu = components.gpu
 args = {...}
 
--- runden
-function round(num, numDecimalPlaces)
-  local mult = 10^(numDecimalPlaces or 0)
-  return math.floor(num * mult + 0.5) / mult
-end
-
 -- getFluids to array
 function getFluids()
   fluids = {}
@@ -44,9 +38,9 @@ if string.lower(args[1]) == "get" then  -- GET befehl
   gpu.setBackground(0xCCCCCC)
   gpu.fill(resX - grafiksize + 1, 1, grafiksize, resY, " ")
   gpu.setBackground(0x0000FF)
-  gpu.fill(resX - grafiksize + 2, round(stand), grafiksize - 2, round(resY - stand), " ")
+  gpu.fill(resX - grafiksize + 2, stand + 1, grafiksize - 2, resY - stand - 2, " ")
   gpu.setBackground(color)
-  gpu.fill(resX - grafiksize + 2, 2, grafiksize - 2, stand - 2, " ")
+  gpu.fill(resX - grafiksize + 2, 2, grafiksize - 2, stand, " ")
   io.read()
 end
 if string.lower(args[1]) == "set" then  -- SET befehl
