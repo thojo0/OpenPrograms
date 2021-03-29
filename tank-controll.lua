@@ -44,7 +44,7 @@ if string.lower(args[1]) == "get" then  -- GET befehl
   gpu.setBackground(0xCCCCCC)
   gpu.fill(resX - grafiksize + 1, 1, grafiksize, resY, " ")
   gpu.setBackground(0x0000FF)
-  gpu.fill(resX - grafiksize + 2, stand, grafiksize - 2, round(resY - stand), " ")
+  gpu.fill(resX - grafiksize + 2, round(stand), grafiksize - 2, round(resY - stand), " ")
   gpu.setBackground(color)
   gpu.fill(resX - grafiksize + 2, 2, grafiksize - 2, stand - 2, " ")
   io.read()
