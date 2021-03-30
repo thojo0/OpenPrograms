@@ -36,34 +36,35 @@ if string.lower(args[1]) == "get" then  -- GET befehl
   grafiksize = 12
   fluids = getFluids()
   term.clear()
-  colSpace = 3
+  colSpace = 6
   col1 = 1
   for i=1, #fluids do
     term.setCursor(1, i)
     io.write(i)
-	tmplen = string.len(string.format(i))
-	if tmplen > col1 then
+    tmplen = string.len(string.format(i))
+    if tmplen > col1 then
       col1 = tmplen
-	end
+    end
   end
   col1 = col1 + colSpace
   col2 = col1
   for i=1, #fluids do
     term.setCursor(col1, i)
     io.write(fluids[i].label)
-	tmplen = string.len(fluids[i].label)
-	if tmplen > col2 then
+    tmplen = string.len(fluids[i].label)
+    if tmplen > col2 then
       col2 = tmplen
-	end
+    end
   end
   col2 = col1 + col2 + colSpace
   for i=1, #fluids do
     term.setCursor(col2, i)
-    io.write(fluids[i].amount)
-	tmplen = string.len(fluids[i].amount)
-	if tmplen > col2 then
+	prozent = tostring(round(fluids[i].amount / tank.getCapacity() * 100,2)) .. "%"
+    io.write(prozent)
+    tmplen = string.len(prozent)
+    if tmplen > col2 then
       col2 = tmplen
-	end
+    end
   end
   stand = (resY - 2) * tank.getFillLevel() / tank.getCapacity()
   standR = round(stand)
@@ -71,7 +72,7 @@ if string.lower(args[1]) == "get" then  -- GET befehl
   gpu.setBackground(0xCCCCCC)
   gpu.fill(resX - grafiksize + 1, 1, grafiksize, resY, " ")
   gpu.setBackground(0x0000FF)
-  gpu.fill(resX - grafiksize + 2, standR + 1, grafiksize - 2, resY - standR - 2, " ")
+  gpu.fill(resX - grafiksize + 2, standR + 2, grafiksize - 2, resY - standR - 2, " ")
   gpu.setBackground(color)
   gpu.fill(resX - grafiksize + 2, 2, grafiksize - 2, standR, " ")
   io.read()
