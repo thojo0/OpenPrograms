@@ -33,7 +33,7 @@ end
 function percent(percent,maxvalue)
   p = round(percent / maxvalue * 100, 2)
   leer = ""
-  for i=0, 3 - string.len(string.match(string.format(p),"(.+)\..+")) do
+  for i=0, 3 - string.len(math.floor(p)) do
     leer = leer .. " "
   end
   return leer .. p
@@ -71,7 +71,7 @@ if string.lower(args[1]) == "get" then  -- GET befehl
     term.setCursor(col2, i)
     io.write(percent(fluids[i].amount,cap) .. "%")
   end
-  stand = tank.getFillLevel() / tank.getCapacity()
+  stand = cap / tank.getCapacity()
   standR = round((resY - 2) * stand)
   color = gpu.getBackground()
   gpu.setBackground(0xCCCCCC)
