@@ -36,7 +36,7 @@ if string.lower(args[1]) == "get" then  -- GET befehl
   grafiksize = 12
   fluids = getFluids()
   term.clear()
-  colSpace = 6
+  colSpace = 8
   col1 = 1
   for i=1, #fluids do
     term.setCursor(1, i)
@@ -57,14 +57,10 @@ if string.lower(args[1]) == "get" then  -- GET befehl
     end
   end
   col2 = col1 + col2 + colSpace
+  cap = tank.getFillLevel()
   for i=1, #fluids do
     term.setCursor(col2, i)
-	prozent = tostring(round(fluids[i].amount / tank.getCapacity() * 100,2)) .. "%"
-    io.write(prozent)
-    tmplen = string.len(prozent)
-    if tmplen > col2 then
-      col2 = tmplen
-    end
+    io.write(tostring(round(fluids[i].amount / cap * 100,2)) .. "%")
   end
   stand = (resY - 2) * tank.getFillLevel() / tank.getCapacity()
   standR = round(stand)
