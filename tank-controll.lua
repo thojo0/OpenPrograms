@@ -29,6 +29,15 @@ function fluidSearch(fluids, search)
   end
   return gefunden
 end
+-- Prozent
+function percent(percent,maxvalue)
+  p = round(percent / maxvalue * 100, 2)
+  leer = ""
+  for i=0, 3 - string.len(string.match(string.format(p),"(.+)\..+")) do
+    leer = leer .. " "
+  end
+  return leer .. p
+end
 
 -- Subcommands
 if string.lower(args[1]) == "get" then  -- GET befehl
@@ -60,10 +69,10 @@ if string.lower(args[1]) == "get" then  -- GET befehl
   cap = tank.getFillLevel()
   for i=1, #fluids do
     term.setCursor(col2, i)
-    io.write(tostring(round(fluids[i].amount / cap * 100,2)) .. "%")
+    io.write(percent(fluids[i].amount,cap) .. "%")
   end
-  stand = (resY - 2) * tank.getFillLevel() / tank.getCapacity()
-  standR = round(stand)
+  stand = tank.getFillLevel() / tank.getCapacity()
+  standR = round((resY - 2) * stand)
   color = gpu.getBackground()
   gpu.setBackground(0xCCCCCC)
   gpu.fill(resX - grafiksize + 1, 1, grafiksize, resY, " ")
