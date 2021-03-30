@@ -36,8 +36,34 @@ if string.lower(args[1]) == "get" then  -- GET befehl
   grafiksize = 12
   fluids = getFluids()
   term.clear()
+  colSpace = 3
+  col1 = 1
   for i=1, #fluids do
-    print(i .. "\t" .. fluids[i].label)
+    term.setCursor(1, i)
+    io.write(i)
+	tmplen = string.len(string.format(i))
+	if tmplen > col1 then
+      col1 = tmplen
+	end
+  end
+  col1 = col1 + colSpace
+  col2 = col1
+  for i=1, #fluids do
+    term.setCursor(col1, i)
+    io.write(fluids[i].label)
+	tmplen = string.len(fluids[i].label)
+	if tmplen > col2 then
+      col2 = tmplen
+	end
+  end
+  col2 = col1 + col2 + colSpace
+  for i=1, #fluids do
+    term.setCursor(col2, i)
+    io.write(fluids[i].amount)
+	tmplen = string.len(fluids[i].amount)
+	if tmplen > col2 then
+      col2 = tmplen
+	end
   end
   stand = (resY - 2) * tank.getFillLevel() / tank.getCapacity()
   standR = round(stand)
