@@ -77,9 +77,9 @@ if string.lower(args[1]) == "get" then  -- GET befehl
   gpu.setBackground(0xCCCCCC)
   gpu.fill(resX - grafiksize + 1, 1, grafiksize, resY, " ")
   gpu.setBackground(0x0000FF)
-  gpu.fill(resX - grafiksize + 2, standR + 2, grafiksize - 2, resY - standR - 2, " ")
+  gpu.fill(resX - grafiksize + 2, 2, grafiksize - 2, resY - standR - 2, " ")
   gpu.setBackground(color)
-  gpu.fill(resX - grafiksize + 2, 2, grafiksize - 2, standR, " ")
+  gpu.fill(resX - grafiksize + 2, standR + 2, grafiksize - 2, standR, " ")
   io.read()
 end
 if string.lower(args[1]) == "set" then  -- SET befehl
